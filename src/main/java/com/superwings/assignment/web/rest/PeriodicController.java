@@ -2,6 +2,7 @@ package com.superwings.assignment.web.rest;
 
 import com.superwings.assignment.service.PeriodicTableService;
 import com.superwings.assignment.service.dto.PeriodicTableDTO;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class PeriodicController {
         Page<PeriodicTableDTO> periodicTableDTO = periodicTableService.getPeriodicTable(pageable);
 
         Map<String, Object> response = new HashMap<>();
-        response.put("result", pageable);
+        response.put("result", periodicTableDTO);
         response.put("msg", "Successful");
 
         return ResponseEntity.ok().body(response);
@@ -33,11 +34,6 @@ public class PeriodicController {
         Map<String, Object> response = new HashMap<>();
         if (periodicTableDTO == null) {
             return ResponseEntity.notFound().build();
-        }
-        if (periodicTableDTO.getId() != null) {
-            response.put("msg", "UnSuccessful");
-            response.put("error", "Id Already Exist");
-            return ResponseEntity.badRequest().body(response);
         } else {
             PeriodicTableDTO savedData = periodicTableService.addElement(periodicTableDTO);
             if (savedData == null) ResponseEntity.internalServerError();

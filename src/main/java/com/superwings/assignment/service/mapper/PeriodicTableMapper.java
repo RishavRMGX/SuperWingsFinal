@@ -35,7 +35,7 @@ public class PeriodicTableMapper {
             return null;
         } else {
             PeriodicTable periodicTable = new PeriodicTable();
-            periodicTable.setId(periodicTable.getId());
+            periodicTable.setId(periodicTableDTO.getId());
             periodicTable.setChemicalSymbol(periodicTableDTO.getChemicalSymbol());
             periodicTable.setChemicalName(periodicTableDTO.getChemicalName());
             periodicTable.setAtomicWeight(periodicTableDTO.getAtomicWeight());

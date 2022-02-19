@@ -5,6 +5,7 @@ import com.superwings.assignment.repository.PeriodicTableRepository;
 import com.superwings.assignment.service.PeriodicTableService;
 import com.superwings.assignment.service.dto.PeriodicTableDTO;
 import com.superwings.assignment.service.mapper.PeriodicTableMapper;
+import java.text.DecimalFormat;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -37,6 +38,8 @@ public class PeriodicTableServiceImpl implements PeriodicTableService {
 
     @Override
     public PeriodicTableDTO addElement(PeriodicTableDTO periodicTableDTO) {
+        DecimalFormat df = new DecimalFormat("###.####");
+        periodicTableDTO.setAtomicWeight(Double.valueOf(df.format(periodicTableDTO.getAtomicWeight())));
         return periodicTableMapper.toDTO(periodicTableRepository.save(periodicTableMapper.toEntity(periodicTableDTO)));
     }
 }
